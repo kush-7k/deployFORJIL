@@ -1,0 +1,36 @@
+<!-- views/layout.hbs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care It ! Car It</title>
+    <link rel="stylesheet" href="/stylesheets/style.css"> <!-- Include your custom or Bootstrap CSS file -->
+</head>
+<body>
+    <header>
+         <img src="/public/images/images(1).jpg">
+        <!-- Your header content goes here -->
+        <h1>Care For Car</h1>
+        
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/public">Public Page</a></li>
+                <li><a href="/views/login.hbs">Login Here</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {{{body}}} <!-- This is where the content of each page will be inserted -->
+    </main>
+
+    <footer>
+        <!-- Your footer content goes here -->
+        <p>&copy; CarMain</p>
+    </footer>
+</body>
+</html>

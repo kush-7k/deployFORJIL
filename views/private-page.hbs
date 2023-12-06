@@ -1,0 +1,72 @@
+<!-- views/private-page.hbs -->
+
+<div class="private-container">
+    <h2>Private Page</h2>
+
+    <!-- Display a list of cars -->
+    <ul>
+        {{#each cars}}
+            <li>{{make}} {{model}} ({{year}}) <a href="/cars/edit/{{_id}}">Edit</a> <a href="/cars/delete/{{_id}}">Delete</a></li>
+        {{/each}}
+    </ul>
+
+    <!-- Add a new car form -->
+    <h3>Add New Car</h3>
+    <form action="/cars/add" method="post">
+        <label for="make">Make:</label>
+        <input type="text" id="make" name="make" required>
+
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" required>
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required>
+
+        <button type="submit">Add Car</button>
+    </form>
+</div>
+
+
+<!-- views/private-page.hbs -->
+
+<!-- ... (existing code) ... -->
+
+<!-- Modal for Delete Confirmation -->
+<div class="modal" id="deleteConfirmationModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this car?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a id="deleteCarLink" class="btn btn-danger" href="#">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript to set the delete link dynamically
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteLinks = document.querySelectorAll('.delete-link');
+        const deleteCarLink = document.getElementById('deleteCarLink');
+
+        deleteLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const carId = this.getAttribute('data-car-id');
+                deleteCarLink.href = `/cars/delete/${carId}`;
+                $('#deleteConfirmationModal').modal('show');
+            });
+        });
+    });
+</script>
+
+<!-- ... (existing code) ... -->

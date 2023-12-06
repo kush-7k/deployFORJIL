@@ -1,0 +1,192 @@
+{{!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+   body {
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+  background-color: #f5f5f5;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+input {
+  width: calc(100% - 16px);
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 12px 24px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  margin: 0 auto;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#output {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  font-size: 18px;
+}
+
+    
+  </style>
+  <script>
+    function checkMaintenance() {
+      var oilChange = document.getElementById('oilChange').checked;
+      var suspensionBalance = document.getElementById('suspensionBalance').checked;
+
+      var outputElement = document.getElementById('output');
+
+      if (oilChange && suspensionBalance) {
+        outputElement.textContent = 'Your car needs an oil change and suspension balance.';
+      } else if (oilChange) {
+        outputElement.textContent = 'Your car needs an oil change.';
+      } else if (suspensionBalance) {
+        outputElement.textContent = 'Your car needs a suspension balance.';
+      } else {
+        outputElement.textContent = 'No specific maintenance needed at the moment.';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Car Maintenance Deals</h1>
+  <label>
+    <input type="checkbox" id="oilChange"> Oil Change
+  </label>
+  <label>
+    <input type="checkbox" id="suspensionBalance"> Suspension Balance
+  </label>
+  <label>
+    <input type="checkbox" id="AirPressure"> Air pressure Balance
+  </label>
+  <button onclick="checkMaintenance()">Check Maintenance</button>
+  <div id="output"></div>
+</body>
+</html> --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Your existing styles here */
+
+    #loginForm,
+    #signupForm,
+    #logoutButton {
+      display: none;
+    }
+  </style>
+  <script>
+    function showLoginForm() {
+      document.getElementById('loginForm').style.display = 'block';
+      document.getElementById('signupForm').style.display = 'none';
+    }
+
+    function showSignupForm() {
+      document.getElementById('signupForm').style.display = 'block';
+      document.getElementById('loginForm').style.display = 'none';
+    }
+
+    function logout() {
+      // Clear user information (for simplicity, use client-side only, not secure)
+      localStorage.removeItem('username');
+      alert('Logged out successfully!');
+      updateUI();
+    }
+
+    function login() {
+      const username = document.getElementById('loginUsername').value;
+      // For simplicity, store username in localStorage (not secure)
+      localStorage.setItem('username', username);
+      alert('Logged in successfully!');
+      updateUI();
+    }
+
+    function signup() {
+      const username = document.getElementById('signupUsername').value;
+      // For simplicity, store username in localStorage (not secure)
+      localStorage.setItem('username', username);
+      alert('Signed up and logged in successfully!');
+      updateUI();
+    }
+
+    function updateUI() {
+      const username = localStorage.getItem('username');
+
+      if (username) {
+        // User is logged in
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('signupForm').style.display = 'none';
+        document.getElementById('logoutButton').style.display = 'block';
+      } else {
+        // User is not logged in
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('signupForm').style.display = 'none';
+        document.getElementById('logoutButton').style.display = 'none';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Car Maintenance Deals</h1>
+
+  <!-- Login Form -->
+  <div id="loginForm">
+    <label>
+      Username:
+      <input type="text" id="loginUsername">
+    </label>
+    <button onclick="login()">Login</button>
+    <p onclick="showSignupForm()">Don't have an account? Sign up here.</p>
+  </div>
+
+  <!-- Signup Form -->
+  <div id="signupForm">
+    <label>
+      Username:
+      <input type="text" id="signupUsername">
+    </label>
+    <button onclick="signup()">Sign Up</button>
+    <p onclick="showLoginForm()">Already have an account? Log in here.</p>
+  </div>
+
+  <!-- Logout Button -->
+  <button id="logoutButton" onclick="logout()">Logout</button>
+
+  <!-- Your existing maintenance form here -->
+
+  <div id="output"></div>
+
+  <script>
+    // Check if the user is already logged in
+    updateUI();
+  </script>
+</body>
+</html>
